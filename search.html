@@ -1,0 +1,41 @@
+  {% include 'header.html' %}
+       <div class="container" style="padding-bottom:20px;">
+                    <div class="checkout-address" style="padding-top:20px;">
+                        <div class="title-left">
+                            <h3>Search Neary BY</h3>
+                        </div>
+						{% if messages %}
+                {% for i in messages %}
+                    <div class="alert alert-success">{{i}}</div>
+                {% endfor %}
+            {% endif %}
+                        <form method="post" style="padding-top:100px;"> {% csrf_token %}
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" name="search" class="form-control" id="firstName" placeholder="Search Near By...." required style="height:50px" autocomplete="off">
+                                   
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                   <input type="submit" class="btn btn-primary py-3 px-5" value="Search" >
+                                </div>
+                            </div>
+							</form>
+                            <div class="row" style="margin-top:100px;">
+                                {% for i in detail %}
+                                 
+                                <div class="col-md-4">
+                                     <h2>{{i.name}}</h2>
+                                    <img src="/media/{{i.image}}" style="width:100%;">
+                                </div>
+                                <div class="col-md-7">
+                                    <h5>{{i.category}}</h5>
+                                    <h5>Email/Mobile: {{i.email}}/{{i.mobile}}</h5>
+                                    <h4>Address</h4>
+                                    <address>City: {{i.city}} <br><br> Area: {{i.Location}}<br><br>{{i.address}}</address>
+                                </div>
+                                {% endfor %}
+                            </div>
+                    </div>  </div>
+  {% include 'footer.html' %}
+     
